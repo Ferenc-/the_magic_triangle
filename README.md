@@ -4,14 +4,14 @@ This project presents a simple solver for an old puzzle published by
 [Heye puzzle], which I recently came across. Apparently, the game is
 available in different flavors ([triangles][1], [squares][2]).
 
+## The Snoopy flavor
+
 ![Snoopy - The Magic Triangle, Heye](doc/snoopy_the_magic_triangle.jpg)
 
 The version of puzzle used here consists of nine equilateral triangles
 with lower and upper parts of figures printed on them. The objective is
 to form a large triangle in such a way that the shapes and colors of the
 parts of the figures on neighbouring triangles match.
-
-# Approach
 
 The following triangles come with the game:
 
@@ -46,6 +46,44 @@ where
 * BG -- body green
 * BW -- body white
 
+## The Crazy Sport flavor
+
+The following triangles come with the game:
+
+
+                    / \                 |                 / \
+                   /   \                |                /   \
+                  /BM BM\               |               /a   b\
+                 /   0   \              |              /   0   \
+                /    HF   \             |             /    c    \
+                -----------             |             -----------
+              / \    BM   / \           |           / \    c    / \
+             /   \   1   /   \          |          /   \   1   /   \
+            /BF HM\HF HF/BM HS\         |         /a   b\b   a/a   b\
+           /   2   \   /   8   \        |        /   2   \   /   8   \
+          /    BS   \ /    HM   \       |       /    c    \ /    c    \
+          ----------- -----------       |       ----------- -----------
+        / \    BS   / \    BS   / \     |     / \    c    / \    c    / \
+       /   \   3   /   \   6   /   \    |    /   \   3   /   \   6   /   \
+      /BS HS\BM HM/BF BM\BM HF/BM BF\   |   /a   b\b   a/a   b\b   a/a   b\
+     /   4   \   /   5   \   /   7   \  |  /   4   \   /   5   \   /   7   \
+    /    HF   \ /    HS   \ /    HF   \ | /    c    \ /    c    \ /    c    \
+    ----------- ----------- ----------- | ----------- ----------- -----------
+
+    All triangles (cf. the image above)    Indices of the triangles and sides
+
+
+where
+
+* HS -- head sideways
+* HF -- head frontal
+* HM -- head mummified
+* BS -- body sideways
+* BS -- body frontal
+* BM -- body mummified
+
+# Approach
+
 The solver uses [backtracking][3] in order to find the solutions. Given
 a set containing nine triangles, a total of 362880 permutations exist to
 form a large triangle. For each of these (spatial) permutations, every
@@ -69,6 +107,10 @@ solutions can be rotated into three different position.
 Just run
 
     $ python ./the_magic_triangle.py deck_of_cards.csv edge_matches.csv
+
+or
+
+    $ python ./the_magic_triangle.py deck_of_cards_crazy_sports.csv edge_matches.csv
 
 ----
 
